@@ -66,27 +66,21 @@
 
 <section class="hero-section text-center d-flex align-items-center position-relative">
     <div class="container py-5">
-        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3"
-              data-aos="zoom-in"
-              data-aos-delay="100">
+        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill fw-bold text-uppercase mb-3" data-aos="zoom-in"
+            data-aos-delay="100">
             Authentic Culinary Experience
         </span>
 
-        <h1 class="display-3 fw-extrabold mb-3 text-white"
-            data-aos="fade-down"
-            data-aos-delay="200">
+        <h1 class="display-3 fw-extrabold mb-3 text-white" data-aos="fade-down" data-aos-delay="200">
             Savora Junction Resto
         </h1>
 
-        <p class="lead mb-4 col-lg-7 mx-auto text-light opacity-90"
-           data-aos="fade-up"
-           data-aos-delay="300">
-            Nikmati kelezatan hidangan istimewa dengan bahan baku segar berkualitas, diracik oleh koki profesional dalam suasana yang hangat dan ramah.
+        <p class="lead mb-4 col-lg-7 mx-auto text-light opacity-90" data-aos="fade-up" data-aos-delay="300">
+            Nikmati kelezatan hidangan istimewa dengan bahan baku segar berkualitas, diracik oleh koki profesional dalam
+            suasana yang hangat dan ramah.
         </p>
 
-        <div class="d-flex justify-content-center gap-3 flex-wrap"
-             data-aos="zoom-in-up"
-             data-aos-delay="400">
+        <div class="d-flex justify-content-center gap-3 flex-wrap" data-aos="zoom-in-up" data-aos-delay="400">
             <a href="#menu" class="btn btn-warning btn-lg fw-bold px-4 py-3 rounded-pill shadow-sm">
                 <i class="fas fa-utensils me-2"></i>Jelajahi Menu
             </a>
@@ -102,13 +96,15 @@
         <div class="text-center mb-5" data-aos="fade-down">
             <span class="text-warning fw-bold text-uppercase tracking-wider">Katalog Produk</span>
             <h2 class="fw-bold fs-1 mt-1">Pilihan Menu Terbaik Kami</h2>
-            <p class="text-muted">Jelajahi kelezatan hidangan pembuka, hidangan utama, cemilan, hingga paket promo hemat kami.</p>
+            <p class="text-muted">Jelajahi kelezatan hidangan pembuka, hidangan utama, cemilan, hingga paket promo hemat
+                kami.</p>
         </div>
 
-        <ul class="nav nav-pills justify-content-center gap-2 mb-5" id="menuTabs" role="tablist" data-aos="zoom-in" data-aos-delay="100">
+        <ul class="nav nav-pills justify-content-center gap-2 mb-5" id="menuTabs" role="tablist" data-aos="zoom-in"
+            data-aos-delay="100">
             {{-- Tombol 'Semua Menu' --}}
             <li class="nav-item" role="presentation">
-                <button class="nav-link active rounded-pill px-4 fw-bold shadow-sm" id="all-tab" data-bs-toggle="pill"
+                <button class="nav-link btn-category rounded-pill px-4 fw-bold" id="all-tab" data-bs-toggle="pill" style="color: #212529 !important;"
                     data-bs-target="#menu-all" type="button" role="tab">
                     Semua Menu
                 </button>
@@ -116,8 +112,9 @@
 
             @foreach($categories as $cat)
             <li class="nav-item" role="presentation">
-                <button class="nav-link rounded-pill px-4 fw-semibold" id="tab-{{ Str::slug($cat->name) }}"
-                    data-bs-toggle="pill" data-bs-target="#menu-{{ Str::slug($cat->name) }}" type="button" role="tab">
+                <button class="nav-link rounded-pill px-4 fw-semibold" style="color: #212529 !important;"
+                    id="tab-{{ Str::slug($cat->name) }}" data-bs-toggle="pill"
+                    data-bs-target="#menu-{{ Str::slug($cat->name) }}" type="button" role="tab">
                     {{ $cat->name }}
                 </button>
             </li>
@@ -130,9 +127,8 @@
             <div class="tab-pane fade show active" id="menu-all">
                 <div class="row g-4">
                     @forelse($menus->take(6) as $index => $menu)
-                    <div class="col-md-6 col-lg-4"
-                         data-aos="fade-up"
-                         data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up"
+                        data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
                         <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden card-menu">
                             @if(is_object($menu->category) && $menu->category->name == 'Paket Spesial')
                             <span
@@ -186,9 +182,8 @@
                 <div class="row g-4">
                     @forelse($menus->filter(fn($m) => (is_object($m->category) ? $m->category->id : null) == $cat->id)
                     as $menu)
-                    <div class="col-md-6 col-lg-4"
-                         data-aos="fade-up"
-                         data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up"
+                        data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
                         <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden card-menu">
                             <img src="{{ asset('storage/back/menu-images/' . $menu->image) }}" class="card-img-top"
                                 style="height: 200px; object-fit: cover;" alt="{{ $menu->name }}"
@@ -214,7 +209,8 @@
                         </div>
                     </div>
                     @empty
-                    <div class="col-12 text-center text-muted py-5">Belum ada daftar menu untuk kategori {{ $cat->name }}.</div>
+                    <div class="col-12 text-center text-muted py-5">Belum ada daftar menu untuk kategori
+                        {{ $cat->name }}.</div>
                     @endforelse
                 </div>
             </div>
@@ -249,7 +245,7 @@
 
 <section class="py-5 bg-light" id="artikel">
     <div class="container py-4">
-         <div class="text-center mb-5" data-aos="fade-down">
+        <div class="text-center mb-5" data-aos="fade-down">
             <span class="text-warning fw-bold text-uppercase tracking-wider">Berita & Events</span>
             <h2 class="fw-bold fs-1 mt-1">Artikel & Informasi Promo</h2>
             <p class="text-muted">Dapatkan info penawaran menarik, diskon spesial, dan tips seputar kuliner.</p>
@@ -257,9 +253,8 @@
 
         <div class="row g-4">
             @forelse($articles as $article)
-             <div class="col-md-4"
-                 data-aos="fade-up"
-                 data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
+            <div class="col-md-4" data-aos="fade-up"
+                data-aos-delay="{{ ($loop->iteration % 3 == 0 ? 3 : $loop->iteration % 3) * 100 }}">
                 <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden card-menu">
                     <img src="{{ asset('storage/back/article-images/' . $article->image) }}" class="card-img-top"
                         style="height: 200px; object-fit: cover;" alt="{{ $article->title }}"
@@ -449,9 +444,9 @@
 
 <div class="container py-4">
     <div class="row justify-content-center">
-         <div class="col-lg-7 col-md-9" data-aos="fade-up" data-aos-duration="800">
+        <div class="col-lg-7 col-md-9" data-aos="fade-up" data-aos-duration="800">
             <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-                   <div class="card-header bg-dark text-white p-4 border-0 position-relative">
+                <div class="card-header bg-dark text-white p-4 border-0 position-relative">
                     <div class="d-flex align-items-center">
                         <div class="bg-warning text-dark rounded-circle p-3 me-3 d-flex align-items-center justify-content-center"
                             style="width: 50px; height: 50px;">
@@ -581,17 +576,15 @@
 
 <section class="py-5 bg-light" id="testimoni">
     <div class="container py-4">
-          <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
+        <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="800">
             <span class="text-warning fw-bold text-uppercase tracking-wider">Ulasan Pengunjung</span>
             <h2 class="fw-bold fs-1 mt-1">Apa Kata Mereka?</h2>
         </div>
 
         <div class="row g-4">
             @forelse ($testimonials as $testimonial)
-                <div class="col-md-4 mb-4"
-                 data-aos="fade-up"
-                 data-aos-duration="800"
-                 data-aos-delay="{{ $loop->iteration * 100 }}">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-duration="800"
+                data-aos-delay="{{ $loop->iteration * 100 }}">
                 <div class="card h-100 shadow-sm border-0 p-3">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
@@ -604,13 +597,12 @@
 
                             <!-- Rating Bintang -->
                             <div class="border-top mt-2 text-warning mb-1 fs-5">
-                                @for ($i = 1; $i <= 5; $i++)
-                                    @if ($i <= $testimonial->rating)
-                                        ★
+                                @for ($i = 1; $i <= 5; $i++) @if ($i <=$testimonial->rating)
+                                    ★
                                     @else
-                                        <span class="text-muted opacity-25">☆</span>
+                                    <span class="text-muted opacity-25">☆</span>
                                     @endif
-                                @endfor
+                                    @endfor
                             </div>
 
                             <!-- Komentar -->

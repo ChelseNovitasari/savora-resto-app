@@ -21,7 +21,7 @@ class FrontController extends Controller
         $articles = \App\Models\Article::latest()->get();
 
         // 4. Ambil data testimoni yang SUDAH DISETUJUI saja
-        $testimonials = \App\Models\Testimonial::where('is_approved', 1)->latest()->take(4)->get();
+        $testimonials = \App\Models\Testimonial::where('is_approved', 1)->latest()->take(3)->get();
 
         // 5. Kirim semua variabel ke view 'welcome'
         return view('welcome', compact('categories', 'menus', 'articles', 'testimonials'));
